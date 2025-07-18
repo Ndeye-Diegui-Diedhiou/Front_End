@@ -23,4 +23,6 @@ You can view the live project here:
 
 ## Contact
 For questions or feedback, feel free to reach out to me!
+  -email: diedhioun4@gmail.com
+  -Number: +221 78 290 75 44
 
