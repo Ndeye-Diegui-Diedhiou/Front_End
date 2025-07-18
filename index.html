@@ -11,7 +11,7 @@
             --primary: #0d253f;
             --accent: #ffb300;
             --accent2: #ff6f00;
-            --bg: #f8fafc;
+            --bg: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
             --text: #222;
             --light: #fff;
             --dark: #111;
@@ -38,9 +38,9 @@
         }
 
         body {
-            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            background: var(--bg);
             color: var(--text);
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
             min-height: 100vh;
             transition: background 0.5s, color 0.5s;
             line-height: 1.6;
@@ -139,18 +139,15 @@
             font-weight: 500;
         }
 
-        .theme-toggle select {
-            padding: 6px 12px;
-            border-radius: 6px;
+        .theme-toggle select,
+        .lang-toggle select {
+            color: var(--text);
+            background: var(--card-bg);
             border: 1px solid #cfd8dc;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 1rem;
-            cursor: pointer;
         }
-
-        .theme-toggle select:hover {
-            background: rgba(255, 255, 255, 0.2);
+        .theme-toggle label,
+        .lang-toggle label {
+            color: var(--text);
         }
 
         /* Hero section */
@@ -285,7 +282,7 @@
         /* Skills section */
         .skills {
             padding: 80px 20px;
-            background: rgba(255, 255, 255, 0.1);
+            background: none;
         
         }
 
@@ -444,6 +441,17 @@
             }
         }
 
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Responsive */
         @media (max-width: 992px) {
             .hero-container {
@@ -522,22 +530,29 @@
         <div class="nav-container">
             <div class="logo-container">
                 <img src="Logo de Ndeye Diegui Diedhiou.png" alt="Logo" class="logo">
-                <div class="nav-title">Portfolio</div>
+                <div class="nav-title" data-i18n="nav-title">Portfolio</div>
             </div>
             <div class="nav-links">
-                <a href="index.html" class="active"><i class="fas fa-home"></i> Accueil</a>
-                <a href="../Capstone1/Homepage.html"><i class="fas fa-project-diagram"></i> Capstone1</a>
-                <a href="../Capstone2/home.html"><i class="fas fa-laptop-code"></i> Capstone2</a>
-                <a href="tableau.html"><i class="fas fa-table"></i> Tableau des balises</a>
-                <a href="cv.html"><i class="fas fa-file-alt"></i> Mon CV</a>
+                <a href="index.html" class="active"><i class="fas fa-home"></i> <span data-i18n="nav-home">Accueil</span></a>
+                <a href="../Capstone1/Homepage.html"><i class="fas fa-project-diagram"></i> <span data-i18n="nav-capstone1">Capstone1</span></a>
+                <a href="../Capstone2/home.html"><i class="fas fa-laptop-code"></i> <span data-i18n="nav-capstone2">Capstone2</span></a>
+                <a href="tableau.html"><i class="fas fa-table"></i> <span data-i18n="nav-table">Tableau des balises</span></a>
+                <a href="cv.html"><i class="fas fa-file-alt"></i> <span data-i18n="nav-cv">Mon CV</span></a>
             </div>
             <div class="nav-right">
                 <div class="theme-toggle">
-                    <label for="theme-select">Thème :</label>
+                    <label for="theme-select" data-i18n="theme-label">Thème :</label>
                     <select id="theme-select">
-                        <option value="auto">Automatique</option>
-                        <option value="light">Clair</option>
-                        <option value="dark">Sombre</option>
+                        <option value="auto" data-i18n="theme-auto">Automatique</option>
+                        <option value="light" data-i18n="theme-light">Clair</option>
+                        <option value="dark" data-i18n="theme-dark">Sombre</option>
+                    </select>
+                </div>
+                <div class="lang-toggle" style="display: flex; align-items: center; gap: 8px;">
+                    <label for="lang-select" style="color:white;font-weight:500;" data-i18n="lang-label">Langue :</label>
+                    <select id="lang-select">
+                        <option value="fr">Français</option>
+                        <option value="en">English</option>
                     </select>
                 </div>
                 <div class="menu-icon">
@@ -551,24 +566,24 @@
     <section class="hero">
         <div class="hero-container">
             <div class="hero-text">
-                <h1>Je suis <span class="auto-typing"></span></h1>
-                <p>
+                <h1 data-i18n="hero-title">Je suis <span class="auto-typing"></span></h1>
+                <p data-i18n="hero-p1">
                     Je suis étudiante en informatique passionnée par le développement web. 
                     Mon objectif est de devenir une développeuse web compétente et de contribuer 
                     à des projets innovants. J'aime travailler en équipe et partager mes connaissances. 
                     Toujours à la recherche de nouveaux défis et d'opportunités pour améliorer mes compétences.
                 </p>
-                <p>
+                <p data-i18n="hero-p2">
                     En dehors de mes études, j'aime lire des livres et écouter de la musique. 
                     Je crois que la collaboration et l'apprentissage continu sont essentiels 
                     pour réussir dans le domaine de l'informatique.
                 </p>
                 <div class="btn-container">
                     <a href="formulaire.html" class="btn btn-primary">
-                        <i class="fas fa-file-alt"></i> Contactez-moi
+                        <i class="fas fa-file-alt"></i> <span data-i18n="btn-contact">Contactez-moi</span>
                     </a>
                     <a href="cv.html" class="btn btn-secondary">
-                        <i class="fas fa-download"></i> Télécharger mon CV
+                        <i class="fas fa-download"></i> <span data-i18n="btn-cv">Télécharger mon CV</span>
                     </a>
                 </div>
             </div>
@@ -582,30 +597,30 @@
     <!-- Skills section -->
     <section class="skills">
         <div class="section-header">
-            <h2>Mes Compétences</h2>
-            <p>Découvrez mes domaines d'expertise et les technologies que je maîtrise</p>
+            <h2 data-i18n="skills-title">Mes Compétences</h2>
+            <p data-i18n="skills-desc">Découvrez mes domaines d'expertise et les technologies que je maîtrise</p>
         </div>
         <div class="skills-container">
             <div class="skill-card">
                 <i class="fas fa-laptop-code"></i>
-                <h3>Développement Front-end</h3>
-                <p>
+                <h3 data-i18n="skill-frontend">Développement Front-end</h3>
+                <p data-i18n="skill-frontend-desc">
                     Création d'interfaces utilisateur interactives et responsives avec HTML, CSS, 
                     JavaScript et les frameworks modernes.
                 </p>
             </div>
             <div class="skill-card">
                 <i class="fas fa-server"></i>
-                <h3>Développement Back-end</h3>
-                <p>
+                <h3 data-i18n="skill-backend">Développement Back-end</h3>
+                <p data-i18n="skill-backend-desc">
                     Développement d'API et de systèmes serveur robustes avec Python, Node.js 
                     et gestion de bases de données.
                 </p>
             </div>
             <div class="skill-card">
                 <i class="fas fa-mobile-alt"></i>
-                <h3>Design Responsive</h3>
-                <p>
+                <h3 data-i18n="skill-responsive">Design Responsive</h3>
+                <p data-i18n="skill-responsive-desc">
                     Conception de sites web qui s'adaptent parfaitement à tous les appareils, 
                     des mobiles aux grands écrans.
                 </p>
@@ -620,14 +635,14 @@
                 <img src="Logo de Ndeye Diegui Diedhiou.png" alt="Logo" class="logo">
                 <div class="nav-title">Ndeye Diegui Diedhiou</div>
             </div>
-            <p>Étudiante en Génie Logiciel - Passionnée par le développement web et les nouvelles technologies</p>
+            <p data-i18n="footer-desc">Étudiante en Génie Logiciel - Passionnée par le développement web et les nouvelles technologies</p>
             
             <div class="footer-links">
-                <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
-                <a href="../Capstone1/Homepage.html"><i class="fas fa-project-diagram"></i> Capstone1</a>
-                <a href="../Capstone2/home.html"><i class="fas fa-laptop-code"></i> Capstone2</a>
-                <a href="tableau.html"><i class="fas fa-table"></i> Tableau des balises</a>
-                <a href="cv.html"><i class="fas fa-file-alt"></i> Mon CV</a>
+                <a href="index.html"><i class="fas fa-home"></i> <span data-i18n="nav-home">Accueil</span></a>
+                <a href="../Capstone1/Homepage.html"><i class="fas fa-project-diagram"></i> <span data-i18n="nav-capstone1">Capstone1</span></a>
+                <a href="../Capstone2/home.html"><i class="fas fa-laptop-code"></i> <span data-i18n="nav-capstone2">Capstone2</span></a>
+                <a href="tableau.html"><i class="fas fa-table"></i> <span data-i18n="nav-table">Tableau des balises</span></a>
+                <a href="cv.html"><i class="fas fa-file-alt"></i> <span data-i18n="nav-cv">Mon CV</span></a>
             </div>
             
             <div class="social-links">
@@ -637,76 +652,191 @@
                 <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
             
-            <p class="copyright">&copy; 2025 Ndeye Diegui Diedhiou. Tous droits réservés.</p>
+            <p class="copyright">&copy; 2025 Ndeye Diegui Diedhiou. <span data-i18n="footer-copyright">Tous droits réservés.</span></p>
         </div>
     </footer>
 
     <script>
-        // Typed.js animation
-        let typed = new Typed('.auto-typing', {
-            strings: ['Étudiante', 'Développeuse Front-end', 'Développeuse Back-end', 'Développeuse Full-stack', 'Passionnée', 'Créative', 'Ndeye Diegui'],
-            typeSpeed: 100,
-            backSpeed: 80,
-            loop: true,
-            shuffle: true,
-            cursorChar: '|',
-        });
-        
-        // Menu mobile toggle
-        const menuIcon = document.querySelector('.menu-icon');
-        const navLinks = document.querySelector('.nav-links');
-        
-        menuIcon.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-        
-        // Gestion du thème
-        const themeSelect = document.getElementById('theme-select');
-        const root = document.documentElement;
+    // Traductions FR/EN
+    const translations = {
+      fr: {
+        "nav-title": "Portfolio",
+        "nav-home": "Accueil",
+        "nav-capstone1": "Capstone1",
+        "nav-capstone2": "Capstone2",
+        "nav-table": "Tableau des balises",
+        "nav-cv": "Mon CV",
+        "theme-label": "Thème :",
+        "theme-auto": "Automatique",
+        "theme-light": "Clair",
+        "theme-dark": "Sombre",
+        "lang-label": "Langue :",
+        "hero-title": "Je suis <span class='auto-typing'></span>",
+        "hero-p1": "Je suis étudiante en informatique passionnée par le développement web. Mon objectif est de devenir une développeuse web compétente et de contribuer à des projets innovants. J'aime travailler en équipe et partager mes connaissances. Toujours à la recherche de nouveaux défis et d'opportunités pour améliorer mes compétences.",
+        "hero-p2": "En dehors de mes études, j'aime lire des livres et écouter de la musique. Je crois que la collaboration et l'apprentissage continu sont essentiels pour réussir dans le domaine de l'informatique.",
+        "btn-contact": "Contactez-moi",
+        "btn-cv": "Télécharger mon CV",
+        "skills-title": "Mes Compétences",
+        "skills-desc": "Découvrez mes domaines d'expertise et les technologies que je maîtrise",
+        "skill-frontend": "Développement Front-end",
+        "skill-frontend-desc": "Création d'interfaces utilisateur interactives et responsives avec HTML, CSS, JavaScript et les frameworks modernes.",
+        "skill-backend": "Développement Back-end",
+        "skill-backend-desc": "Développement d'API et de systèmes serveur robustes avec Python, Node.js et gestion de bases de données.",
+        "skill-responsive": "Design Responsive",
+        "skill-responsive-desc": "Conception de sites web qui s'adaptent parfaitement à tous les appareils, des mobiles aux grands écrans.",
+        "footer-desc": "Étudiante en Génie Logiciel - Passionnée par le développement web et les nouvelles technologies",
+        "footer-copyright": "Tous droits réservés."
+      },
+      en: {
+        "nav-title": "Portfolio",
+        "nav-home": "Home",
+        "nav-capstone1": "Capstone1",
+        "nav-capstone2": "Capstone2",
+        "nav-table": "HTML Tags Table",
+        "nav-cv": "My Resume",
+        "theme-label": "Theme:",
+        "theme-auto": "Auto",
+        "theme-light": "Light",
+        "theme-dark": "Dark",
+        "lang-label": "Language:",
+        "hero-title": "I am <span class='auto-typing'></span>",
+        "hero-p1": "I am a computer science student passionate about web development. My goal is to become a skilled web developer and contribute to innovative projects. I enjoy teamwork and sharing knowledge. Always seeking new challenges and opportunities to improve my skills.",
+        "hero-p2": "Outside of my studies, I enjoy reading books and listening to music. I believe that collaboration and continuous learning are essential to succeed in IT.",
+        "btn-contact": "Contact me",
+        "btn-cv": "Download my Resume",
+        "skills-title": "My Skills",
+        "skills-desc": "Discover my areas of expertise and the technologies I master",
+        "skill-frontend": "Front-end Development",
+        "skill-frontend-desc": "Creating interactive and responsive user interfaces with HTML, CSS, JavaScript, and modern frameworks.",
+        "skill-backend": "Back-end Development",
+        "skill-backend-desc": "Developing robust APIs and server systems with Python, Node.js, and database management.",
+        "skill-responsive": "Responsive Design",
+        "skill-responsive-desc": "Designing websites that perfectly adapt to all devices, from mobiles to large screens.",
+        "footer-desc": "Software Engineering Student - Passionate about web development and new technologies",
+        "footer-copyright": "All rights reserved."
+      }
+    };
 
-        function applyTheme(theme) {
-            if (theme === 'auto') {
-                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    root.setAttribute('data-theme', 'dark');
-                } else {
-                    root.removeAttribute('data-theme');
-                }
-            } else {
-                root.setAttribute('data-theme', theme);
-            }
+    // Fonction de traduction
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
         }
+      });
+      // Typed.js
+      if (window.typed) {
+        if (lang === 'en') {
+          window.typed.strings = ['Student', 'Front-end Developer', 'Back-end Developer', 'Full-stack Developer', 'Passionate', 'Creative', 'Ndeye Diegui'];
+        } else {
+          window.typed.strings = ['Étudiante', 'Développeuse Front-end', 'Développeuse Back-end', 'Développeuse Full-stack', 'Passionnée', 'Créative', 'Ndeye Diegui'];
+        }
+        window.typed.reset(true);
+      }
+    }
 
-        // Appliquer le thème sauvegardé ou auto
-        const savedTheme = localStorage.getItem('theme') || 'auto';
-        themeSelect.value = savedTheme;
-        applyTheme(savedTheme);
+    // Textes Typed.js pour chaque langue
+    const typedStrings = {
+      fr: [
+        'Étudiante',
+        'Développeuse Front-end',
+        'Développeuse Back-end',
+        'Développeuse Full-stack',
+        'Passionnée',
+        'Créative',
+        'Ndeye Diegui'
+      ],
+      en: [
+        'Student',
+        'Front-end Developer',
+        'Back-end Developer',
+        'Full-stack Developer',
+        'Passionate',
+        'Creative',
+        'Ndeye Diegui'
+      ]
+    };
 
-        themeSelect.addEventListener('change', () => {
-            localStorage.setItem('theme', themeSelect.value);
-            applyTheme(themeSelect.value);
+    // Fonction pour (ré)initialiser Typed.js selon la langue
+    function initTyped(lang) {
+      if (window.typed) {
+        window.typed.destroy();
+      }
+      window.typed = new Typed('.auto-typing', {
+        strings: typedStrings[lang],
+        typeSpeed: 100,
+        backSpeed: 80,
+        loop: true,
+        shuffle: true,
+        cursorChar: '|',
+      });
+    }
+
+    // Initialisation
+    const langSelect = document.getElementById('lang-select');
+    const savedLang = localStorage.getItem('lang') || 'fr';
+    langSelect.value = savedLang;
+    setLanguage(savedLang);
+    initTyped(savedLang);
+
+    langSelect.addEventListener('change', () => {
+      localStorage.setItem('lang', langSelect.value);
+      setLanguage(langSelect.value);
+      initTyped(langSelect.value);
+    });
+
+    // Menu mobile toggle
+    const menuIcon = document.querySelector('.menu-icon');
+    const navLinks = document.querySelector('.nav-links');
+    menuIcon.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    // Gestion du thème
+    const themeSelect = document.getElementById('theme-select');
+    const root = document.documentElement;
+    function applyTheme(theme) {
+        if (theme === 'auto') {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                root.setAttribute('data-theme', 'dark');
+            } else {
+                root.removeAttribute('data-theme');
+            }
+        } else {
+            root.setAttribute('data-theme', theme);
+        }
+    }
+    const savedTheme = localStorage.getItem('theme') || 'auto';
+    themeSelect.value = savedTheme;
+    applyTheme(savedTheme);
+    themeSelect.addEventListener('change', () => {
+        localStorage.setItem('theme', themeSelect.value);
+        applyTheme(themeSelect.value);
+    });
+
+    // Animation au défilement (corrigée)
+    document.addEventListener('DOMContentLoaded', function() {
+        const skillCards = document.querySelectorAll('.skill-card');
+        skillCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
         });
-
-        // Animation au défilement
-        document.addEventListener('DOMContentLoaded', function() {
-            const skillsSection = document.querySelector('.skills');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const skillCards = document.querySelectorAll('.skill-card');
-                        skillCards.forEach((card, index) => {
-                            setTimeout(() => {
-                                card.style.animation = `fadeInUp 0.5s ease-out forwards`;
-                                card.style.opacity = '0';
-                                card.style.transform = 'translateY(20px)';
-                            }, index * 200);
-                        });
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            observer.observe(skillsSection);
-        });
+        const skillsSection = document.querySelector('.skills');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillCards = document.querySelectorAll('.skill-card');
+                    skillCards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.style.animation = `fadeInUp 0.5s ease-out forwards`;
+                        }, index * 200);
+                    });
+                }
+            });
+        }, { threshold: 0.1 });
+        observer.observe(skillsSection);
+    });
     </script>
 </body>
 </html>
